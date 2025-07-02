@@ -2,9 +2,9 @@
   "name": "@repo/db",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+ "scripts": {
+  "seed": "tsx prisma/seed.ts"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -12,8 +12,11 @@
   "dependencies": {
     "@prisma/client": "^6.11.0"
   },
-  
-    "exports": {
-        "./client": "./src/index.ts"
-    }
+  "exports": {
+    "./client": "./src/index.ts"
+  },
+  "devDependencies": {
+    "bcryptjs": "^3.0.2",
+    "tsx": "^4.20.3"
+  }
 }

@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { PrismaClient } from "@repo/db/client";
+const prisma = new PrismaClient();
 
 export default function Home() {
   return (

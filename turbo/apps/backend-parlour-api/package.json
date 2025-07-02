@@ -11,10 +11,15 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@repo/db": "*",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "tsup": "^8.5.0",
-    "typescript": "^5.8.3",
-    "@repo/db":"*"
+    "typescript": "^5.8.3"
   }
 }

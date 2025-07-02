@@ -1,12 +1,20 @@
-import express from 'express';
+import express from "express";
+import cors from "cors";
+import { PORT } from "./config/env";
+import authRoutes from "./routes/authRoutes";
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-app.get('/', (_, res) => {
-  res.send('Backend running ✅');
+app.use(cors());
+app.use(express.json());
+
+app.use("/api/auth", authRoutes);
+
+
+app.get("/", (req, res) => {
+  res.send("Backend API is running");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server started on http://localhost:${PORT}`);
+app.listen(Number(PORT), () => {
+  console.log(`API ready at http://localhost:${PORT}`);
 });
