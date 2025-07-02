@@ -1,0 +1,48 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String   @id @default(uuid())
+  email    String   @unique
+  password String
+  name     String
+  role     Role
+}
+
+model Employee {
+  id       String   @id @default(uuid())
+  name     String
+  email    String   @unique
+  tasks    Task[]
+  logs     AttendanceLog[]
+}
+
+model Task {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  assignedTo  Employee @relation(fields: [employeeId], references: [id])
+  employeeId  String
+}
+
+model AttendanceLog {
+  id         String   @id @default(uuid())
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId String
+  status     String  
+  timestamp  DateTime @default(now())
+}
+
+enum Role {
+  ADMIN
+  SUPER_ADMIN
+}
