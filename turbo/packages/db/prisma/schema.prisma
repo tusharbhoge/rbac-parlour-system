@@ -32,17 +32,23 @@ model Task {
   description String
   assignedTo  Employee @relation(fields: [employeeId], references: [id])
   employeeId  String
+  isDone      Boolean @default(false)
 }
 
 model AttendanceLog {
   id         String   @id @default(uuid())
   employee   Employee @relation(fields: [employeeId], references: [id])
   employeeId String
-  status     String  
+  status     Status   @default(PUNCH_OUT)
   timestamp  DateTime @default(now())
 }
 
 enum Role {
   ADMIN
   SUPER_ADMIN
+}
+
+enum Status {
+  PUNCH_IN
+  PUNCH_OUT
 }

@@ -1,11 +1,17 @@
+
 import { Request, Response, NextFunction } from "express";
 
-export const checkRole = (roles: ("ADMIN" | "SUPER_ADMIN")[]) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+export function checkRole(roles: string[]) {
+  return (req: Request, res: Response, next: NextFunction): void => {
     const user = (req as any).user;
     if (!user || !roles.includes(user.role)) {
-      return res.status(403).json({ message: "Access denied" });
+      res.status(403).json({ message: "Access denied" });
+      return;
     }
-    next();
+    if (roles.includes(user.role)) {
+      next();
+    } else {
+      res.status(403).json({ message: "Forbidden" });
+    }
   };
-};
+}

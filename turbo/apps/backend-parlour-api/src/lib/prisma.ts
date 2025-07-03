@@ -1,4 +1,3 @@
-// lib/prisma.ts
 import { PrismaClient } from "@repo/db/client";
 
 const globalForPrisma = globalThis as unknown as {

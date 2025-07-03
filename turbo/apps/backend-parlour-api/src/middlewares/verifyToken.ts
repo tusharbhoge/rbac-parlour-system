@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config/env";
 import { Request, Response, NextFunction } from "express";
 
-export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
+export const verifyToken = (req: Request, res: Response, next: NextFunction): void | Response => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
