@@ -16,13 +16,6 @@ export const getTasks = async (req: Request, res: Response, next: NextFunction) 
 };
 
 export const createTask = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-    const body = req.body;
-    const { success } = createTaskInput.safeParse(body);
-    if (!success) {
-        return res.status(400).json({
-            message: "Invalid Inputs",
-        });
-    }
     try {
         const { title, description, employeeId } = req.body;
         const task = await prisma.task.create({
@@ -39,13 +32,6 @@ export const createTask = async (req: Request, res: Response, next: NextFunction
 };
 
 export const updateTask = async (req: Request, res: Response, next: NextFunction):Promise<any> => {
-    const body = req.body;
-    const { success } = updateTaskInput.safeParse(body);
-    if (!success) {
-        return res.status(400).json({
-            message: "Invalid Inputs",
-        });
-    }
     try {
         const { id } = req.params;
         const { title, description, isDone } = req.body;

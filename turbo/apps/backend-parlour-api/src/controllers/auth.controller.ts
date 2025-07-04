@@ -2,19 +2,11 @@ import { NextFunction, Request, Response } from "express";
 import { prisma } from "../lib/prisma";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { signinInput } from "@repo/common/types";
 
 export  const login = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-  const body = req.body;
-  const { success } = signinInput.safeParse(body);
-  if (!success) {
-    return res.status(400).json({
-      message: "Invalid Inputs",
-    });
-  }
 
   try {
-    const { email, password } = body;
+    const { email, password } = req.body;
     const user = await prisma.user.findUnique({ where: { email: email } });
     if (!user){
       return res.status(401).json({
