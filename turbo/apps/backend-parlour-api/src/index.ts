@@ -37,6 +37,6 @@ app.get("/", (req, res) => {
 
 const PORT = Number(process.env.PORT) || 3000;
 
-app.listen(Number(PORT), () => {
+server.listen(Number(PORT), () => {
   console.log(`API ready at http://localhost:${PORT}`);
 });
