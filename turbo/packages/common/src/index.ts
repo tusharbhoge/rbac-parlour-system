@@ -15,9 +15,9 @@ export const createEmployeeInput = z.object({
 export type CreateEmployeeInput =z.infer<typeof createEmployeeInput>
 
 export const updateEmployeeInput = z.object({
-    name : z.string(),
-    email : z.string().email(),
-    id : z.number()
+    name : z.string().optional(),
+    email : z.string().email().optional(),
+    id : z.string()
 })
 export type UpdateEmployeeInput =z.infer<typeof updateEmployeeInput>
 

@@ -1,9 +1,10 @@
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
-const JWT_SECRET = process.env.JWT_SECRET;
+
 export const verifyToken = (req: Request, res: Response, next: NextFunction): void | Response => {
   const authHeader = req.headers.authorization;
+  const JWT_SECRET = process.env.JWT_SECRET;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(403).json({ message: "No token provided" });
