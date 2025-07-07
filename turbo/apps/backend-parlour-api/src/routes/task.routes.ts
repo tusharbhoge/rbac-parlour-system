@@ -16,7 +16,7 @@ router.use(verifyToken as any);
 
 router.get("/", getTasks); 
 router.post("/", checkRole(["SUPER_ADMIN"]), validateInput(createTaskInput),createTask);
-router.put("/:id", checkRole(["SUPER_ADMIN"]), validateInput(updateTaskInput),updateTask);
+router.put("/:id", checkRole(["SUPER_ADMIN"]), updateTask);
 router.delete("/:id", checkRole(["SUPER_ADMIN"]), deleteTask);
 
 export default router;

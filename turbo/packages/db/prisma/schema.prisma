@@ -1,5 +1,3 @@
-
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -22,22 +20,22 @@ model Employee {
   id       String   @id @default(uuid())
   name     String
   email    String   @unique
-  tasks    Task[]
-  logs     AttendanceLog[]
+  tasks    Task[]    
+  logs     AttendanceLog[] 
 }
 
 model Task {
   id          String   @id @default(uuid())
   title       String
   description String
-  assignedTo  Employee @relation(fields: [employeeId], references: [id])
+  assignedTo  Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade) 
   employeeId  String
   isDone      Boolean @default(false)
 }
 
 model AttendanceLog {
   id         String   @id @default(uuid())
-  employee   Employee @relation(fields: [employeeId], references: [id])
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade) 
   employeeId String
   status     Status   @default(PUNCH_OUT)
   timestamp  DateTime @default(now())

@@ -1,10 +1,26 @@
 import { Router } from "express";
-import { getAttendanceLogs } from "../controllers/attendance.controller";
-import { verifyToken } from "../middlewares/verifyToken";
+import { 
+  getAttendanceLogs, 
+  verifyEmployee,
+  handlePunch 
+} from "../controllers/attendance.controller";
+import { validateInput } from "../middlewares/validate.input";
+import { z } from "zod";
+
+
+const verifyEmployeeSchema = z.object({
+  email: z.string().email()
+});
+const punchSchema = z.object({
+  email: z.string().email()
+});
 
 const router = Router();
 
-router.use(verifyToken as any);
 
+// Routes
 router.get("/", getAttendanceLogs); 
+router.post("/verify", validateInput(verifyEmployeeSchema), verifyEmployee);
+router.post("/punch", validateInput(punchSchema), handlePunch);
+
 export default router;

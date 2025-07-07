@@ -19,13 +19,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useAuth } from "../../src/context/AuthContext"; // 👈 NEW
+import { useAuth } from "../../src/context/AuthContext"; 
 
 export default function LoginPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
-  const { login } = useAuth(); // 👈 use context login function
+  const { login } = useAuth(); 
 
   const form = useForm<SigninInput>({
     resolver: zodResolver(signinInput),
@@ -46,7 +46,7 @@ export default function LoginPage() {
 
       const { token, user } = response.data;
 
-      login(token, user.role); // 👈 call login from context
+      login(token, user.role); 
       toast.success("Successfully Logged In!");
       router.replace("/dashboard");
     } catch (error: any) {
@@ -59,7 +59,6 @@ export default function LoginPage() {
 
   return (
     <div className="w-screen h-screen flex justify-center items-center">
-      {/* Left side image */}
       <div className="w-1/2 h-full relative">
         <CldImage
           src="https://res.cloudinary.com/dzbfzbhtn/image/upload/v1751610359/parlour_dkllnt.png"
@@ -74,7 +73,6 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right side login form */}
       <div className="w-1/2 h-full flex justify-center items-center">
         <div className="w-full max-w-lg rounded shadow-xl p-10 flex justify-center items-center flex-col bg-card">
           <h1 className="font-bold text-4xl text-foreground">Login to your Account</h1>
@@ -83,7 +81,6 @@ export default function LoginPage() {
           <div className="w-full mt-5 px-4">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                {/* Email */}
                 <FormField
                   control={form.control}
                   name="email"
@@ -97,8 +94,6 @@ export default function LoginPage() {
                     </FormItem>
                   )}
                 />
-
-                {/* Password */}
                 <FormField
                   control={form.control}
                   name="password"
@@ -113,7 +108,6 @@ export default function LoginPage() {
                   )}
                 />
 
-                {/* Submit Button */}
                 <Button type="submit" disabled={isSubmitting} className="w-full py-6">
                   {isSubmitting ? "Logging in..." : "Sign In"}
                 </Button>

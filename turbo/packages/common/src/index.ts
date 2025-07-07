@@ -25,7 +25,7 @@ export type UpdateEmployeeInput =z.infer<typeof updateEmployeeInput>
 export const createTaskInput = z.object({
     title: z.string(),
     description: z.string().optional(),
-    employeeId: z.string(),
+    employeeId: z.string().optional(),
     isDone: z.boolean()
 })
 export type CreateTaskInput =z.infer<typeof createTaskInput>
@@ -39,3 +39,15 @@ export const updateTaskInput = z.object({
 })
 export type UpdateETaskInput =z.infer<typeof updateTaskInput>
 
+export type Task = {
+    id: string;
+    title: string;
+    description: string;
+    employeeId?: string; 
+    isDone: boolean;
+    assignedTo?: {     
+        id: string;
+        name: string;
+        email: string;
+    };
+}
